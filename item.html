@@ -1,0 +1,213 @@
+<html>
+<head>
+	<script src="jquery-1.10.2.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.17.0/jquery.validate.js"></script>
+	<style>
+	
+	body {
+		font-family:arial;
+		margin:0px;
+		padding:0px;		
+	}
+
+	div#wrapper {
+	margin:0 auto;
+	width:980px;
+	height:auto;
+	color:gray;
+	}
+	div#wrapper table {
+		width:inherit;
+	}
+	div#wrapper h3 {
+		text-align:center;	
+	}
+
+	div#wrapper tabel{
+ 	border:1px solid gray;
+		
+	}
+	input {
+		margin: 5px;	
+	}
+	div#wrapper th {
+		background-color:gray;	
+	}
+	div#wrapper td {
+		border:1px solid gray;	
+	}
+	.toggleTrue {
+	        font-weight:600;
+		padding:5px;
+		background-color:green;
+	}
+	.False{
+		color:white;	
+		background-color:red;	
+		/* content: "false";*/
+	}
+
+	div#buttonNew {
+		width: 65px;
+		height: 14px;
+		font-weight: 700;
+		text-align: center;
+		background-color: #cec6c6;	
+		color:#424242;
+		border-radius: 5px;
+		padding: 6px;
+		font-size: 13px;
+		font-family:arial;
+		margin: 5px;
+		float: left;
+		border: 1px solid #424242;
+		}
+
+	div#buttonNew:hover {
+		background-color: gray;
+		color:black;
+	}
+	div#buttonNew:hover .sign {
+		border:1px solid white;
+		color:white;	
+			
+	}
+	div#buttonNew.saveDatabase {
+		font-size:8px;		
+	}
+	.remove {
+		float:left;
+		text-align:center;
+	}
+	.default {
+		display:none;		
+	}
+	.sign {
+		font-weight: 700;
+		border: 1px solid #424242;
+		width: 15px;
+		height: 15px;
+		border-radius: 45%;
+		float: right;
+		color: #424242;
+		font-weight: 900;
+		font-size: 13px;
+		padding: 1px;
+		text-align: center;
+		margin-top:-2px;	
+		/*background-color:#b3b1b1;*/
+	}
+	input#submit_100 {
+		/*width: 65px;
+		height: 14px;*/
+		font-weight: 700;
+		text-align: center;
+		background-color: #cec6c6;	
+		color:#424242;
+		border-radius: 5px;
+		padding: 5px;
+		font-size: 13px;
+		margin: 5px;
+		float: left;
+		border: 1px solid #424242;		
+	}
+	input#submit_100:hover {
+		background-color: gray;
+		color:black;
+		/*border:1px solid red;	*/
+	}	
+	</style>
+
+</head>
+<body>
+
+	<div id="wrapper">
+		<h3>Export User input data to Excel using PHP and jQuery</h3>	
+
+	<form name="sampleForm" action="excel.php" method="post" id="formButton">
+	 <table>
+	  <tr>
+	    <th>Id</th>
+	    <th>Firstname</th>
+	    <th>Lastname</th>
+	    <th>Delete</th> 
+	  </tr>
+	  <tr class="default">
+	    <td><input type="text" name="id[]"  class="id"></td>
+	    <td><input type="text" name="firstname[]" class="firstname"></td>
+	    <td><input type="text" name="lastname[]" class="lastname"></td>
+	    <td class="toggleTrue">True</td>
+	  </tr>
+	
+	   <tr>
+	    <td><input type="text" name="id[]" class="id"></td>
+	    <td><input type="text" name="firstname[]" class="firstname"></td>
+	    <td><input type="text" name="lastname[]" class="lastname"></td>
+	    <td class="toggleTrue">True</td>
+	  </tr>
+
+	</table> 
+
+	<div id="buttonNew" class="add">row<div class="sign">+</div></div><!-- end of buttonNew -->
+	<div id="buttonNew" class="remove">row <div class="sign">-</div></div><!-- end of buttonNew -->
+	<div id="buttonNew" class="saveDatabase">Save to Database</div><!-- end of buttonNew -->
+
+	<input id="submit_100" name="submit" type="submit" value="output -> Excel" />
+
+	</form>
+	
+
+		
+	</div><!-- end of wrapper-->
+
+	<script>
+		$('td.toggleTrue').on('click', function(){
+			$(this).toggleClass('False');
+			if($(this).text() == 'True') {$(this).text('False');}
+			if($(this).text() == 'False') {$(this).text('True');}
+			
+		});
+
+		
+		$('div#buttonNew.add').on('click', function(){
+			tr = $('tr.default').clone(true);
+			
+			tr.removeClass("default").appendTo('div#wrapper table');	
+		});
+		
+		$('div#buttonNew.remove').on('click', function(){
+			trCount = $('tr').size();
+			if(trCount > 3) {
+			 out=confirm("Delete row?");
+					if(out == true) { 
+				$('div#wrapper table tr').last().remove();
+			}
+		  } else {
+			confirm('no rows to delete');	
+		}
+					
+		});
+
+
+		$('div#buttonNew.saveDatabase').on('click', function(){
+			
+			function save(){
+			out=confirm('saving to database');
+			  if(out == true) { 
+			$('form').attr('action','saveDatabase.php');
+			$('#submit_100').trigger('click');
+			$('form').attr('action','excel.php');
+			} /* end of if true saving */
+			}  /* end of if true save */
+			save();
+		 
+		});
+
+
+
+
+
+	</script>
+
+</body>
+</html>
