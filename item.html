@@ -1,0 +1,58 @@
+<html>
+<head>
+	<script src="jquery-1.10.2.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+	<div id="inputTh">
+		<input type="text" name="th[]" class="th"></td>
+		<div id="buttonNew" class="CreateTh">Create New Th</div><!-- end of buttonNew -->
+	</div><!-- end of inputTh -->
+
+
+	<div id="wrapper">
+		<h3>Export User input data to Excel using PHP and jQuery</h3>	
+
+	<form name="sampleForm" action="excel.php" method="post" id="formButton">
+	 <table>
+	  <tr class="th">
+	    <th>Id</th>
+	    <th>Firstname</th>
+	    <th>Lastname</th>
+	  <!--  <th>Delete</th>  -->
+	  </tr>
+	  <tr class="default">
+	    <td><input type="text" name="id[]"  class="id"></td>
+	    <td><input type="text" name="firstname[]" class="firstname"></td>
+	    <td><input type="text" name="lastname[]" class="lastname"></td>
+	 <!--   <td class="toggleTrue">True</td> -->
+	  </tr>
+	
+           <tr>
+	    <td><input type="text" name="id[]" class="id"></td>
+	    <td><input type="text" name="firstname[]" class="firstname"></td>
+	    <td><input type="text" name="lastname[]" class="lastname"></td>
+	 <!--   <td class="toggleTrue">True</td> -->
+	  </tr>
+
+	</table> 
+
+	<div id="buttonNew" class="CreateNewTableRow">New TabelRow</div><!-- end of buttonNew -->
+	<div id="buttonNew" class="RemoveNewTableRow">Remove TabelRow</div><!-- end of buttonNew -->
+	<div id="buttonNew" class="add">row<div class="sign">+</div></div><!-- end of buttonNew -->
+	<div id="buttonNew" class="remove">row <div class="sign">-</div></div><!-- end of buttonNew -->
+	<div id="buttonNew" class="saveDatabase">Save to Database</div><!-- end of buttonNew -->
+	
+	<input id="submit_100" name="submit" type="submit" value="output -> Excel" />
+
+	</form>
+	
+
+		
+	</div><!-- end of wrapper-->
+
+	<script src="rowInput.js"></script>
+
+</body>
+</html>
